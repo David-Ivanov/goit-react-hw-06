@@ -1,23 +1,23 @@
-import { useId, useState } from "react"
+import { useId } from "react"
 import css from "./SearchBar.module.css";
+import { useDispatch } from "react-redux";
+import { changeFilter } from "../../redux/filtersSlice";
 
-export default function SearchBar({ search }) {
+export default function SearchBar() {
 
     const inputId = useId();
+    const dispatch = useDispatch();
 
-    const [inputValue, setInputValue] = useState("");
-
-    const handleChange = (e) => {
-        const value = e.target.value
-        setInputValue(value);
-        search(value);
+    const handleChange = event => {
+        const value = event.target.value;
+        dispatch(changeFilter(value));
     }
 
     return (
         <div className={css.box}>
 
             <label htmlFor={inputId} className={css.label}>Find contacts by name</label>
-            <input id={inputId} className={css.input} type="text" name="search" value={inputValue} onChange={handleChange} />
+            <input id={inputId} className={css.input} type="text" name="search" onChange={handleChange} />
 
         </div>
     )
