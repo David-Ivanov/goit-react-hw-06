@@ -17,10 +17,6 @@ export default function ContactList() {
         }
     }
 
-    const dispatch = useDispatch();
-    const handleClick = id => {
-        dispatch(deleteContact(id));
-    }
 
     return (
         <ul className={css.list}>
@@ -30,7 +26,6 @@ export default function ContactList() {
                     id={contact.id}
                     name={contact.name}
                     number={contact.number}
-                    deleteContact={() => handleClick(contact.id)}
                 />
             ))}
         </ul>
